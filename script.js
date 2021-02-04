@@ -6,7 +6,7 @@ const titanic = document.querySelector('#titanic')
 // Set some styles on the titanic
 // display flex, justifyContent center, alignItems flex-end
 titanic.style.display = 'grid'
-titanic.style.gridTemplateColumns = 'repeat(20, 10px)'
+titanic.style.gridTemplateColumns = 'repeat(34, 15px)'
 titanic.style.gridGap = '1px'
 
 // Map over the data and make a new element for each passenger
@@ -21,9 +21,24 @@ passengers.forEach(p => {
 
 // Let's loop over each passenger and set some styles 
 passengers.forEach((p, i) => {
-  p.style.width = '10px'
-  p.style.height = '10px'
-  p.style.backgroundColor = '#000'
+  if (data[i].fields.age >= 18) {
+    p.style.width = '15px'
+    p.style.height = '15px'
+  } else {
+    p.style.width = '10px'
+    p.style.height = '10px'
+  }
+
+  p.style.borderRadius = data[i].fields.sex === "female" ? '50%' : '0'
+  
+  p.style.opacity = data[i].fields.survived === 'Yes' ? '100%' : '50%'
+  if (data[i].fields.embarked === 'S') {
+    p.style.backgroundColor = 'red'
+  } else if (data[i].fields.embarked == "C") {
+    p.style.backgroundColor = 'yelow'
+  } else {
+    p.style.backgroundColor = 'blue'
+  }
 })
 
 // Challenges - 
